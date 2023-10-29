@@ -29,6 +29,11 @@
     "@typescript-eslint/no-explicit-any": "error",
     "@next/next/no-html-link-for-pages": "error",
     "@next/next/no-img-element": "error",
-    "react/react-in-jsx-scope": "off"
+    "react/react-in-jsx-scope": "off",
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "warn",
+    "@typescript-eslint/interface-name-prefix": "off",
+    "@typescript-eslint/ban-ts-comment": "error",
+    "@typescript-eslint/no-empty-function": "off"
   }
 }
