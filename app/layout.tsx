@@ -1,7 +1,6 @@
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
-
-const inter = Inter({ subsets: ['latin'] });
+import { Providers } from './providers';
+import { Box } from '@chakra-ui/react';
 
 export const metadata: Metadata = {
   title: 'Test task',
@@ -11,7 +10,11 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }): JSX.Element {
   return (
     <html lang="ru">
-      <body className={inter.className}>{children}</body>
+      <body>
+        <Box as="main">
+          <Providers>{children}</Providers>
+        </Box>
+      </body>
     </html>
   );
 }
