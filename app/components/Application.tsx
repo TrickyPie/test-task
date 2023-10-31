@@ -1,15 +1,4 @@
-import {
-  Box,
-  Flex,
-  Image,
-  Text,
-  Grid,
-  Heading,
-  Stat,
-  Tag,
-  Spacer,
-  Checkbox,
-} from '@chakra-ui/react';
+import { Flex, Image, Text, Grid, Heading, Stat, Tag, Spacer, Checkbox } from '@chakra-ui/react';
 
 export default function Application(): JSX.Element {
   return (
@@ -71,10 +60,12 @@ export default function Application(): JSX.Element {
 
       <Spacer />
 
-      <Box>
-        <Checkbox value="checked" colorScheme="blue"></Checkbox>
-        <Stat as="b">220,00 USDT</Stat>
-      </Box>
+      <Flex flexDirection="column" h="100%" gap="30%">
+        <Checkbox value="checked" colorScheme="blue" alignSelf="end"></Checkbox>
+        <Stat as="b" alignSelf="end">
+          220,00 USDT
+        </Stat>
+      </Flex>
     </Flex>
   );
 }
