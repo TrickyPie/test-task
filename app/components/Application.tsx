@@ -1,43 +1,66 @@
-import { Box, Flex, Image, Text, Grid, Heading, Stat, Tag } from '@chakra-ui/react';
+import {
+  Box,
+  Flex,
+  Image,
+  Text,
+  Grid,
+  Heading,
+  Stat,
+  Tag,
+  Spacer,
+  Checkbox,
+} from '@chakra-ui/react';
 
 export default function Application(): JSX.Element {
   return (
-    <Flex>
-      <Grid>
-        <Flex>
-          <Box>
-            <Image boxSize="10px" objectFit="cover" src="/chevron-right.svg" alt="" />
+    <Flex w="100%" alignItems="center" borderRadius="20%" backgroundColor="white">
+      <Grid gap={8}>
+        <Flex gap={5}>
+          <Flex gap={2} alignItems="center">
+            <Image boxSize={5} objectFit="cover" src="/people.svg" alt="Количество подписчиков" />
             <Text>~1</Text>
-          </Box>
-          <Box>
-            <Image boxSize="10px" objectFit="cover" src="/chevron-right.svg" alt="" />
+          </Flex>
+          <Flex gap={2} alignItems="center">
+            <Image boxSize={5} objectFit="cover" src="/view.svg" alt="Количество просмоторов" />
             <Text>~1</Text>
-          </Box>
-          <Box>
-            <Image boxSize="10px" objectFit="cover" src="/chevron-right.svg" alt="" />
+          </Flex>
+          <Flex gap={2} alignItems="center">
+            <Image boxSize={5} objectFit="cover" src="/man.svg" alt="Мужчин среди аудитории" />
             <Text>50%</Text>
-          </Box>
-          <Box>
-            <Image boxSize="10px" objectFit="cover" src="/chevron-right.svg" alt="" />
+          </Flex>
+          <Flex gap={2} alignItems="center">
+            <Image boxSize={5} objectFit="cover" src="/woman.svg" alt="Женщин среди аудитории" />
             <Text>50%</Text>
-          </Box>
+          </Flex>
         </Flex>
 
-        <Flex>
-          <Flex>
-            <Image boxSize="10px" objectFit="cover" src="/chevron-right.svg" alt="" />
+        <Flex flexDirection="column" gap={2}>
+          <Flex gap={4} alignItems="center">
+            <Image
+              boxSize={10}
+              objectFit="cover"
+              src="/nestjs.svg"
+              alt="Аватар группы или канала в виде красного льва, являющийся логотипом nest js"
+            />
             <Text>Сеть каналов СНГ</Text>
           </Flex>
-          <Flex>
-            <Heading>Все о путешествиях</Heading>
-            <Box>
-              <Image boxSize="10px" objectFit="cover" src="/chevron-right.svg" alt="" />
+          <Flex gap={4}>
+            <Heading as="h4" size="md">
+              Все о путешествиях
+            </Heading>
+            <Flex>
+              <Image
+                boxSize={5}
+                objectFit="cover"
+                src="/search.svg"
+                alt="Иконка статуса проверки"
+              />
               <Text>На проверке</Text>
-            </Box>
+            </Flex>
           </Flex>
         </Flex>
 
-        <Flex>
+        <Flex gap={2}>
           <Tag>РФ</Tag>
           <Tag>Пост</Tag>
           <Tag>Видео</Tag>
@@ -45,8 +68,12 @@ export default function Application(): JSX.Element {
           <Tag>Криптовалюты</Tag>
         </Flex>
       </Grid>
+
+      <Spacer />
+
       <Box>
-        <Stat>220,00 USDT</Stat>
+        <Checkbox value="checked" colorScheme="blue"></Checkbox>
+        <Stat as="b">220,00 USDT</Stat>
       </Box>
     </Flex>
   );
