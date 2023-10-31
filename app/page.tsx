@@ -1,3 +1,4 @@
+import { Text } from '@chakra-ui/react';
 export default function Home(): JSX.Element {
-  return <div>Home page</div>;
+  return <Text>Home page</Text>;
 }

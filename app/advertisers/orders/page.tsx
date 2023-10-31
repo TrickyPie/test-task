@@ -1,3 +1,4 @@
+import { Text } from '@chakra-ui/react';
 export default function Orders(): JSX.Element {
-  return <div>Orders page</div>;
+  return <Text>Orders page</Text>;
 }

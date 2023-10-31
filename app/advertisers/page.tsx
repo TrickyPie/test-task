@@ -1,3 +1,4 @@
+import { Text } from '@chakra-ui/react';
 export default function Advertisers(): JSX.Element {
-  return <div>advertisers page</div>;
+  return <Text>advertisers page</Text>;
 }
