@@ -10,11 +10,12 @@ import {
   Checkbox,
   Card,
 } from '@chakra-ui/react';
+import Search from '../../public/search';
 
 export default function Application(): JSX.Element {
   return (
-    <Card w="100%">
-      <Flex w="100%" alignItems="center" backgroundColor="white" p="3">
+    <Card as="article" w="100%">
+      <Flex w="100%" alignItems="center" backgroundColor="white" p="5">
         <Grid gap="8">
           <Flex gap="5">
             <Flex gap="2" alignItems="center">
@@ -49,13 +50,8 @@ export default function Application(): JSX.Element {
               <Heading as="h4" size="md">
                 Все о путешествиях
               </Heading>
-              <Flex>
-                <Image
-                  boxSize="5"
-                  objectFit="cover"
-                  src="/search.svg"
-                  alt="Иконка статуса проверки"
-                />
+              <Flex alignItems="center" gap="1">
+                <Search />
                 <Text>На проверке</Text>
               </Flex>
             </Flex>

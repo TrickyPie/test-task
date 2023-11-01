@@ -4,7 +4,7 @@ import Pagination from './Pagination';
 
 export default function ApplicationsBlock(): JSX.Element {
   return (
-    <SimpleGrid w="100%" spacing="10">
+    <SimpleGrid w="100%" spacing="5">
       <Applications></Applications>
       <Pagination></Pagination>
     </SimpleGrid>
