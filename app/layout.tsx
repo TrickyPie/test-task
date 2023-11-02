@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }): JSX.Element {
   return (
     <Box lang="ru" as="html" minH="100%">
-      <Box as="body" w="100%" minH="100vh">
+      <Box as="body" w="100%" minH="100vh" bgColor="#f4f7fe">
         <Box as="main">
           <Providers>{children}</Providers>
         </Box>

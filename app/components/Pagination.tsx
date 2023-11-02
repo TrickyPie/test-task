@@ -9,7 +9,7 @@ export default function Pagination(): JSX.Element {
         <Image boxSize="5" objectFit="cover" src="/chevron-left.svg" alt="На предыдущую страницу" />
         <Box
           bg="gray.200"
-          p="3"
+          p="2"
           borderRadius="5px"
           display="flex"
           alignItems="center"
