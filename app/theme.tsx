@@ -1,13 +1,28 @@
-/*
- grey f4f7fe
- hell grey fefefe
- white ffffff
+import { extendTheme } from '@chakra-ui/react';
 
- кнопка cbd5e0
- выберите статус edf2f7
- на проверке fefcbf
+const theme = extendTheme({
+  colors: {
+    brand: {
+      lightGray: '#FAFBFC',
+      gray: '#EDF2F7',
+      bgGray: '#F4F7FE',
+      darkGray: '#CBD5E0',
+      blue: '#422AFB',
+      white: '#FFFFFF',
+    },
+  },
+  components: {
+    Checkbox: {
+      baseStyle: {
+        control: {
+          _checked: {
+            bg: 'brand.blue',
+            borderColor: 'brand.blue',
+          },
+        },
+      },
+    },
+  },
+});
 
- цвет текста 1b254b
-
- синий акцент 422afb
-  */
+export default theme;
