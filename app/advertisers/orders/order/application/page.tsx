@@ -1,8 +1,9 @@
-import { Flex, Center, Button } from '@chakra-ui/react';
+import { Flex, Center } from '@chakra-ui/react';
 import Breadcrumbs from '../../../../components/Breadcrumbs';
 import ApplicationsBlock from '../../../../components/ApplicationsBlock';
 import HeadingWithBack from '../../../../components/HeadingWithBack';
 import ApplicationControlPanel from '../../../../components/ApplicationControlPanel';
+import SelectionControlButtons from '../../../../components/SelectionControlButtons';
 
 export default function Application(): JSX.Element {
   return (
@@ -12,11 +13,7 @@ export default function Application(): JSX.Element {
         <HeadingWithBack />
         <ApplicationControlPanel />
         <ApplicationsBlock />
-
-        <Flex alignSelf="end" gap="5">
-          <Button>Сбросить</Button>
-          <Button>Выбрано заявок: 0</Button>
-        </Flex>
+        <SelectionControlButtons />
       </Flex>
     </Center>
   );
