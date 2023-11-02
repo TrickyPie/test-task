@@ -1,8 +1,18 @@
-import { Breadcrumb, BreadcrumbLink, BreadcrumbItem, Box } from '@chakra-ui/react';
-import NextLink from 'next/link';
+'use client';
+import { usePathname } from 'next/navigation';
+import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, Box } from '@chakra-ui/react';
 import ChevronRight from '../../public/chevron-right';
 
+const routes = [
+  { path: '/', name: 'Главная' },
+  { path: '/advertisers', name: 'Рекламодатели' },
+  { path: '/advertisers/orders', name: 'Заказы' },
+  { path: '/advertisers/orders/order', name: 'Заказ' },
+  { path: '/advertisers/orders/order/application', name: 'Заявки' },
+];
+
 export default function Breadcrumbs(): JSX.Element {
+  const pathname = usePathname();
   return (
     <Breadcrumb
       separator={
@@ -11,50 +21,22 @@ export default function Breadcrumbs(): JSX.Element {
         </Box>
       }
     >
-      <BreadcrumbItem>
-        <BreadcrumbLink as={NextLink} href={'/'} _hover={{ color: 'blue.500' }} p="2">
-          Главная
-        </BreadcrumbLink>
-      </BreadcrumbItem>
+      {routes.map(({ path, name }) => {
+        const isCurrent = pathname === path;
 
-      <BreadcrumbItem>
-        <BreadcrumbLink as={NextLink} href={'/advertisers'} _hover={{ color: 'blue.500' }} p="2">
-          Рекламодатели
-        </BreadcrumbLink>
-      </BreadcrumbItem>
-
-      <BreadcrumbItem>
-        <BreadcrumbLink
-          as={NextLink}
-          href={'/advertisers/orders'}
-          _hover={{ color: 'blue.500' }}
-          p="2"
-        >
-          Заказы
-        </BreadcrumbLink>
-      </BreadcrumbItem>
-
-      <BreadcrumbItem>
-        <BreadcrumbLink
-          as={NextLink}
-          href={'/advertisers/orders/order'}
-          _hover={{ color: 'blue.500' }}
-          p="2"
-        >
-          Заказ
-        </BreadcrumbLink>
-      </BreadcrumbItem>
-
-      <BreadcrumbItem isCurrentPage>
-        <BreadcrumbLink
-          as={NextLink}
-          href={'/advertisers/orders/order/application'}
-          _hover={{ color: 'blue.500' }}
-          p="2"
-        >
-          Заявки
-        </BreadcrumbLink>
-      </BreadcrumbItem>
+        return (
+          <BreadcrumbItem key={path} isCurrentPage={isCurrent ? true : undefined}>
+            <BreadcrumbLink
+              href={path}
+              _hover={{ color: '#422afb', textDecoration: 'none', cursor: 'pointer' }}
+              p="2"
+              fontWeight={isCurrent ? 'bold' : 'normal'}
+            >
+              {name}
+            </BreadcrumbLink>
+          </BreadcrumbItem>
+        );
+      })}
     </Breadcrumb>
   );
 }
