@@ -1,45 +1,22 @@
-import { Flex, Center, Link, Heading, Select, Button, Image, Box } from '@chakra-ui/react';
+import { Flex, Center, Select, Button, Box } from '@chakra-ui/react';
 import Breadcrumbs from '../../../../components/Breadcrumbs';
-import NextLink from 'next/link';
 import ApplicationsBlock from '../../../../components/ApplicationsBlock';
 import ChevronDown from '../../../../../public/chevron-down';
+import HeadingWithBack from '../../../../components/HeadingWithBack';
 
 export default function Application(): JSX.Element {
   return (
-    <Center p="10">
-      <Flex flexDirection="column" gap="4" height="100%">
+    <Center p="10" w="100%">
+      <Flex flexDirection="column" gap="1" height="100%" w="70%">
         <Breadcrumbs />
-
-        <Flex gap="2" alignItems="center">
-          <Link
-            as={NextLink}
-            href="/advertisers/orders/order/"
-            bgColor="#ffffff"
-            borderRadius="5px"
-            p="2"
-          >
-            <Box
-              bg="gray.200"
-              p="2"
-              borderRadius="5px"
-              display="flex"
-              alignItems="center"
-              justifyContent="center"
-            >
-              <Image boxSize="6" objectFit="cover" src="/chevron-left.svg" alt="Обратно к заказу" />
-            </Box>
-          </Link>
-          <Heading as="h3" size="lg">
-            Заявки по заказу #0b6f729f-abdf-4919-92f5-31875d790179
-          </Heading>
-        </Flex>
-
-        <Flex gap="4">
+        <HeadingWithBack />
+        <Flex gap="4" bgColor="#ffffff" p="5" marginTop="5" borderRadius="25px">
           <Select
             overflow="hidden"
             variant="outline"
             placeholder="Выберите статус"
-            w="max-content"
+            w="22%"
+            bgColor="#ffffff"
             icon={
               <Box
                 bg="gray.200"
