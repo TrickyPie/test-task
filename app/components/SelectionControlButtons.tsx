@@ -1,6 +1,6 @@
 import { Button, Flex } from '@chakra-ui/react';
 
-export default function ApplicationsBlock(): JSX.Element {
+export default function SelectionControlButtons(): JSX.Element {
   return (
     <Flex alignSelf="end" gap="5">
       <Button>Сбросить</Button>
