@@ -1,7 +1,7 @@
 import { faker } from '@faker-js/faker/locale/ru';
 
 type Order = {
-  id: string;
+  id: number;
   subscribers: number;
   views: number;
   malePercentage: number;
@@ -10,13 +10,13 @@ type Order = {
   category: string;
   channelName: string;
   verificationStatus: string;
-  tags: string[];
+  tags: string | string[];
   price: string;
 };
 
-const generateFakeOrder = (): Order => {
+const generateFakeOrder = (id: number): Order => {
   return {
-    id: faker.string.uuid(),
+    id: id,
     subscribers: faker.number.int({ min: 1000, max: 50000 }),
     views: faker.number.int({ min: 1000, max: 150000 }),
     malePercentage: faker.number.int({ max: 100 }),
@@ -25,7 +25,9 @@ const generateFakeOrder = (): Order => {
     category: faker.commerce.department(),
     channelName: faker.company.name(),
     verificationStatus: faker.helpers.arrayElement(['На проверке', 'Проверен']),
-    tags: faker.lorem.words({ min: 2, max: 7 }).split(' '),
+    tags: Array.from({ length: faker.number.int({ min: 1, max: 7 }) }, () =>
+      faker.commerce.department()
+    ),
     price: faker.commerce.price(),
   };
 };
@@ -33,7 +35,7 @@ const generateFakeOrder = (): Order => {
 const createArrayOfOrders = () => {
   const orderList = [];
   for (let i = 0; i < 35; i += 1) {
-    orderList.push(generateFakeOrder());
+    orderList.push(generateFakeOrder(i + 1));
   }
   return orderList;
 };
