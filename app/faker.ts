@@ -1,6 +1,6 @@
 import { faker } from '@faker-js/faker/locale/ru';
 
-type Order = {
+export type Order = {
   id: number;
   subscribers: number;
   views: number;
@@ -12,6 +12,7 @@ type Order = {
   verificationStatus: string;
   tags: string | string[];
   price: string;
+  accepted: boolean;
 };
 
 const generateFakeOrder = (id: number): Order => {
@@ -29,6 +30,7 @@ const generateFakeOrder = (id: number): Order => {
       faker.commerce.department()
     ),
     price: faker.commerce.price(),
+    accepted: false,
   };
 };
 
@@ -40,4 +42,6 @@ const createArrayOfOrders = () => {
   return orderList;
 };
 
-export default createArrayOfOrders;
+const ordersList = createArrayOfOrders();
+
+export { ordersList };
