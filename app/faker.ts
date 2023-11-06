@@ -10,7 +10,7 @@ export type Order = {
   category: string;
   channelName: string;
   verificationStatus: string;
-  tags: string | string[];
+  tags: string[];
   price: string;
   accepted: boolean;
 };
@@ -26,9 +26,13 @@ const generateFakeOrder = (id: number): Order => {
     category: faker.commerce.department(),
     channelName: faker.company.name(),
     verificationStatus: faker.helpers.arrayElement(['На проверке', 'Проверен']),
-    tags: Array.from({ length: faker.number.int({ min: 1, max: 7 }) }, () =>
-      faker.commerce.department()
-    ),
+    tags: [
+      ...new Set(
+        Array.from({ length: faker.number.int({ min: 1, max: 4 }) }, () =>
+          faker.commerce.department().toLowerCase()
+        )
+      ),
+    ],
     price: faker.commerce.price(),
     accepted: false,
   };
