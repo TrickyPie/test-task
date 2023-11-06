@@ -22,13 +22,13 @@ export type ResponseProps = {
 async function getApplications(limit = 10, offset = 0): Promise<ResponseProps> {
   try {
     const response = await fetch(`/api/orders?limit=${limit}&offset=${offset}`);
-    if (!response.ok) {
-      throw new Error('Request failed');
-    }
     const data = await response.json();
+    if (response.status !== 200) {
+      throw new Error(data.message);
+    }
     return data;
   } catch (error) {
-    throw new Error('Error fetching orders');
+    throw new Error(`${error}`);
   }
 }
 export default getApplications;
