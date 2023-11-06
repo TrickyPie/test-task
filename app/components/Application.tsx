@@ -4,6 +4,7 @@ import { Order } from '../faker';
 
 export default function Application(appProps: Order): JSX.Element {
   const {
+    id,
     subscribers,
     views,
     malePercentage,
@@ -76,7 +77,12 @@ export default function Application(appProps: Order): JSX.Element {
         <Spacer />
 
         <Flex flexDirection="column" h="100%" gap="30%">
-          <Checkbox value="checked" colorScheme="brand" alignSelf="end"></Checkbox>
+          <Checkbox
+            value="checked"
+            colorScheme="brand"
+            alignSelf="end"
+            onClick={() => console.log(id)}
+          ></Checkbox>
           <Text as="b" alignSelf="end" textAlign="end">
             {price} USDT
           </Text>
