@@ -1,9 +1,9 @@
 import { Flex, Center } from '@chakra-ui/react';
 import Breadcrumbs from '../../../../components/Breadcrumbs';
-import ApplicationsBlock from '../../../../components/ApplicationsBlock';
 import HeadingWithBack from '../../../../components/HeadingWithBack';
 import ApplicationControlPanel from '../../../../components/ApplicationControlPanel';
 import SelectionControlButtons from '../../../../components/SelectionControlButtons';
+import ApplicationsBlock from '../../../../components/ApplicationsBlock';
 
 export default function Application(): JSX.Element {
   return (

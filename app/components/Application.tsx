@@ -45,7 +45,7 @@ export default function Application(appProps: Order): JSX.Element {
                 boxSize="8"
                 objectFit="cover"
                 src={channelAvatar}
-                alt="Аватар группы или канала в виде красного льва, являющийся логотипом nest js"
+                alt="Аватар группы или канала"
               />
               <Text>{category}</Text>
             </Flex>
