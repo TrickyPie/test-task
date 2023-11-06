@@ -1,6 +1,8 @@
 import { Flex, Image, Text, Grid, Heading, Tag, Spacer, Checkbox, Card } from '@chakra-ui/react';
 import Search from '../../public/search';
 import { Order } from '../faker';
+import putUpdatedApplication from '../services/putUpdatedApplication';
+import { useMutation } from '@tanstack/react-query';
 
 export default function Application(appProps: Order): JSX.Element {
   const {
@@ -16,6 +18,14 @@ export default function Application(appProps: Order): JSX.Element {
     tags,
     price,
   } = appProps;
+
+  const { mutate, isPending, isError, error, data } = useMutation(putUpdatedApplication);
+
+  const handleChoose = () => {
+    mutate(id);
+  };
+
+  console.log(isPending, isError, data, error);
 
   return (
     <Card as="article" w="100%" borderRadius="30px">
@@ -81,7 +91,7 @@ export default function Application(appProps: Order): JSX.Element {
             value="checked"
             colorScheme="brand"
             alignSelf="end"
-            onClick={() => console.log(id)}
+            onClick={handleChoose}
           ></Checkbox>
           <Text as="b" alignSelf="end" textAlign="end">
             {price} USDT
