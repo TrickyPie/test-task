@@ -6,18 +6,21 @@ import ApplicationControlPanel from '../../../../components/ApplicationControlPa
 import SelectionControlButtons from '../../../../components/SelectionControlButtons';
 import ApplicationsBlock from '../../../../components/ApplicationsBlock';
 import { useState } from 'react';
-import buttonStatusContext from '../../../../Context';
+import context from '../../../../Context';
 
 export default function ApplicationPage(): JSX.Element {
   const [buttonStatus, setButtonStatus] = useState(false);
+  const [counter, setCounter] = useState<number>(0);
 
   const contextData = {
     buttonStatus,
     setButtonStatus,
+    counter,
+    setCounter,
   };
 
   return (
-    <buttonStatusContext.Provider value={contextData}>
+    <context.Provider value={contextData}>
       <Center p="10" w="100%">
         <Flex flexDirection="column" gap="1" height="100%" w="70%">
           <Breadcrumbs />
@@ -27,6 +30,6 @@ export default function ApplicationPage(): JSX.Element {
           <SelectionControlButtons />
         </Flex>
       </Center>
-    </buttonStatusContext.Provider>
+    </context.Provider>
   );
 }

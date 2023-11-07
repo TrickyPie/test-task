@@ -15,13 +15,10 @@ import { Order } from '../faker';
 import putUpdatedApplication from '../services/putUpdatedApplication';
 import { useMutation } from '@tanstack/react-query';
 import { useContext, useState } from 'react';
-import buttonStatusContextType from '../Context';
+import contextType from '../Context';
 
-export const chosenApplications: number[] = [];
+const chosenApplications: number[] = [];
 export default function Application(appProps: Order): JSX.Element {
-  const [checkedStatus, setCheckedStatus] = useState(false);
-  const { buttonStatus } = useContext(buttonStatusContextType);
-
   const {
     id,
     subscribers,
@@ -36,26 +33,30 @@ export default function Application(appProps: Order): JSX.Element {
     price,
   } = appProps;
 
+  const { buttonStatus, setCounter } = useContext(contextType);
+  const [checkedStatus, setCheckedStatus] = useState(chosenApplications.includes(id));
+
   const {
     mutate: update,
-    isSuccess,
     isError,
     isPending,
     error,
-    data,
   } = useMutation({
     mutationFn: putUpdatedApplication,
     onSuccess: async () => {
-      console.log('onSuccess');
-      setCheckedStatus(!checkedStatus);
-    },
-    onSettled: async () => {
-      console.log('onSettled');
+      setCheckedStatus((prev) => !prev);
     },
   });
 
   const handleCheckboxClick = () => {
     update(id);
+    if (chosenApplications.includes(id)) {
+      chosenApplications.filter((chosenId) => chosenId !== id);
+      setCounter((prevCounter) => prevCounter - 1);
+    } else {
+      chosenApplications.push(id);
+      setCounter((prevCounter) => prevCounter + 1);
+    }
   };
 
   if (isPending) {
@@ -68,10 +69,6 @@ export default function Application(appProps: Order): JSX.Element {
 
   if (isError) {
     console.log(error.message);
-  }
-
-  if (isSuccess && !chosenApplications.some((id) => id === data.id)) {
-    chosenApplications.push(id);
   }
 
   return (

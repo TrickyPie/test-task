@@ -2,10 +2,10 @@
 import { Flex, Select, Button, Box } from '@chakra-ui/react';
 import ChevronDown from '../../public/chevron-down';
 import { useContext } from 'react';
-import buttonStatusContextType from '../Context';
+import contextType from '../Context';
 
 export default function ApplicationControlPanel(): JSX.Element {
-  const { buttonStatus, setButtonStatus } = useContext(buttonStatusContextType);
+  const { buttonStatus, setButtonStatus } = useContext(contextType);
 
   const handleClick = () => {
     const updatedIsClicked = !buttonStatus;

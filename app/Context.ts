@@ -1,17 +1,17 @@
 import { Dispatch, SetStateAction, createContext } from 'react';
 
-type buttonStatusContextType = {
+type contextType = {
   buttonStatus: boolean;
   setButtonStatus: Dispatch<SetStateAction<boolean>>;
   counter: number;
   setCounter: Dispatch<SetStateAction<number>>;
 };
 
-const buttonStatusContext = createContext<buttonStatusContextType>({
+const context = createContext<contextType>({
   buttonStatus: false,
   setButtonStatus: () => {},
   counter: 0,
   setCounter: () => {},
 });
 
-export default buttonStatusContext;
+export default context;
