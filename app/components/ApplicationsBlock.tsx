@@ -18,7 +18,7 @@ export default function ApplicationsBlock(): JSX.Element {
   });
 
   useEffect(() => {
-    if (data) {
+    if (data && data.pagination.totalPages) {
       setTotalPages(data.pagination.totalPages);
     }
   }, [data]);

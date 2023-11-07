@@ -14,9 +14,14 @@ import Search from '../../public/search';
 import { Order } from '../faker';
 import putUpdatedApplication from '../services/putUpdatedApplication';
 import { useMutation } from '@tanstack/react-query';
+import { useContext, useState } from 'react';
+import buttonStatusContextType from '../Context';
 
-export const chosenApplications: Order[] = [];
+export const chosenApplications: number[] = [];
 export default function Application(appProps: Order): JSX.Element {
+  const [checkedStatus, setCheckedStatus] = useState(false);
+  const { buttonStatus } = useContext(buttonStatusContextType);
+
   const {
     id,
     subscribers,
@@ -42,6 +47,7 @@ export default function Application(appProps: Order): JSX.Element {
     mutationFn: putUpdatedApplication,
     onSuccess: async () => {
       console.log('onSuccess');
+      setCheckedStatus(!checkedStatus);
     },
     onSettled: async () => {
       console.log('onSettled');
@@ -64,8 +70,8 @@ export default function Application(appProps: Order): JSX.Element {
     console.log(error.message);
   }
 
-  if (isSuccess && !chosenApplications.some((app) => app.id === data.id)) {
-    chosenApplications.push(data);
+  if (isSuccess && !chosenApplications.some((id) => id === data.id)) {
+    chosenApplications.push(id);
   }
 
   return (
@@ -129,10 +135,12 @@ export default function Application(appProps: Order): JSX.Element {
 
         <Flex flexDirection="column" h="100%" gap="30%">
           <Checkbox
+            visibility={buttonStatus ? 'visible' : 'hidden'}
             value="checked"
             colorScheme="brand"
             alignSelf="end"
             onChange={handleCheckboxClick}
+            isChecked={checkedStatus}
           ></Checkbox>
           <Text as="b" alignSelf="end" textAlign="end">
             {price} USDT

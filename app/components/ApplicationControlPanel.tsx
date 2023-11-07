@@ -1,7 +1,17 @@
+'use client';
 import { Flex, Select, Button, Box } from '@chakra-ui/react';
 import ChevronDown from '../../public/chevron-down';
+import { useContext } from 'react';
+import buttonStatusContextType from '../Context';
 
 export default function ApplicationControlPanel(): JSX.Element {
+  const { buttonStatus, setButtonStatus } = useContext(buttonStatusContextType);
+
+  const handleClick = () => {
+    const updatedIsClicked = !buttonStatus;
+    setButtonStatus(updatedIsClicked);
+  };
+
   return (
     <Flex gap="4" bgColor="#ffffff" p="5" marginTop="5" borderRadius="25px" boxShadow="md">
       <Select
@@ -32,7 +42,10 @@ export default function ApplicationControlPanel(): JSX.Element {
         <option value="option2">Отклонено</option>
         <option value="option3">Ожидает решения</option>
       </Select>
-      <Button colorScheme="gray">Выбрать к одобрению/отклонению</Button>
+
+      <Button colorScheme={buttonStatus ? 'messenger' : 'gray'} onClick={handleClick}>
+        Выбрать к одобрению/отклонению
+      </Button>
     </Flex>
   );
 }
