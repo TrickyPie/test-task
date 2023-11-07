@@ -10,13 +10,7 @@ export type PaginationType = {
 
 export type ResponseProps = {
   limitedOrders: Order[];
-  pagination: {
-    totalCount: number;
-    totalPages: number;
-    currentPage: number;
-    nextPage: number | null;
-    prevPage: number | null;
-  };
+  pagination: PaginationType;
 };
 
 async function getApplications(limit = 10, offset = 0): Promise<ResponseProps> {

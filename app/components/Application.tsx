@@ -1,9 +1,21 @@
-import { Flex, Image, Text, Grid, Heading, Tag, Spacer, Checkbox, Card } from '@chakra-ui/react';
+import {
+  Flex,
+  Image,
+  Text,
+  Grid,
+  Heading,
+  Tag,
+  Spacer,
+  Checkbox,
+  Card,
+  Spinner,
+} from '@chakra-ui/react';
 import Search from '../../public/search';
 import { Order } from '../faker';
 import putUpdatedApplication from '../services/putUpdatedApplication';
 import { useMutation } from '@tanstack/react-query';
 
+export const chosenApplications: Order[] = [];
 export default function Application(appProps: Order): JSX.Element {
   const {
     id,
@@ -19,13 +31,42 @@ export default function Application(appProps: Order): JSX.Element {
     price,
   } = appProps;
 
-  const { mutate, isPending, isError, error, data } = useMutation(putUpdatedApplication);
+  const {
+    mutate: update,
+    isSuccess,
+    isError,
+    isPending,
+    error,
+    data,
+  } = useMutation({
+    mutationFn: putUpdatedApplication,
+    onSuccess: async () => {
+      console.log('onSuccess');
+    },
+    onSettled: async () => {
+      console.log('onSettled');
+    },
+  });
 
-  const handleChoose = () => {
-    mutate(id);
+  const handleCheckboxClick = () => {
+    update(id);
   };
 
-  console.log(isPending, isError, data, error);
+  if (isPending) {
+    return (
+      <Flex justifyContent="center">
+        <Spinner color="#422AFB" size="xl" />
+      </Flex>
+    );
+  }
+
+  if (isError) {
+    console.log(error.message);
+  }
+
+  if (isSuccess && !chosenApplications.some((app) => app.id === data.id)) {
+    chosenApplications.push(data);
+  }
 
   return (
     <Card as="article" w="100%" borderRadius="30px">
@@ -91,7 +132,7 @@ export default function Application(appProps: Order): JSX.Element {
             value="checked"
             colorScheme="brand"
             alignSelf="end"
-            onClick={handleChoose}
+            onChange={handleCheckboxClick}
           ></Checkbox>
           <Text as="b" alignSelf="end" textAlign="end">
             {price} USDT

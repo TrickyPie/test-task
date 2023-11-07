@@ -12,7 +12,7 @@ export default function ApplicationsBlock(): JSX.Element {
   const [currentPage, setCurrentPage] = useState(START_PAGE);
   const [totalPages, setTotalPages] = useState(START_PAGE);
 
-  const { isPending, isError, data, error } = useQuery({
+  const { data, isLoading, isError, isSuccess, error } = useQuery({
     queryKey: ['getApplications', currentPage],
     queryFn: () => getApplications(LIMIT, (currentPage - COUNTER_STEP) * LIMIT),
   });
@@ -22,6 +22,14 @@ export default function ApplicationsBlock(): JSX.Element {
       setTotalPages(data.pagination.totalPages);
     }
   }, [data]);
+
+  if (isLoading) {
+    return (
+      <Flex justifyContent="center">
+        <Spinner color="#422AFB" size="xl" />
+      </Flex>
+    );
+  }
 
   if (isError) {
     console.log(error.message);
@@ -49,13 +57,8 @@ export default function ApplicationsBlock(): JSX.Element {
       borderRadius="30px"
       boxShadow="md"
     >
-      {isPending && (
-        <Flex justifyContent="center">
-          <Spinner color="#422AFB" size="xl" />
-        </Flex>
-      )}
       <SimpleGrid w="100%" spacing="10">
-        {data &&
+        {isSuccess &&
           data.limitedOrders.map((application: Order) => {
             return <Application key={application.id} {...application}></Application>;
           })}
