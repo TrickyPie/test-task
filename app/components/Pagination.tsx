@@ -32,6 +32,7 @@ export default function Pagination({
             objectFit="cover"
             src="/chevron-left.svg"
             alt="На предыдущую страницу"
+            loading="lazy"
           />
         </Button>
 
@@ -59,6 +60,7 @@ export default function Pagination({
             objectFit="cover"
             src="/chevron-right.svg"
             alt="На следующую страницу"
+            loading="lazy"
           />
         </Button>
       </Flex>

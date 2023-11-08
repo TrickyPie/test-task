@@ -95,19 +95,43 @@ export default function Application({
         <Grid gap="8">
           <Flex gap="4">
             <Flex gap="2" alignItems="center">
-              <Image boxSize="5" objectFit="cover" src="/people.svg" alt="Количество подписчиков" />
+              <Image
+                boxSize="5"
+                objectFit="cover"
+                src="/people.svg"
+                alt="Количество подписчиков"
+                loading="lazy"
+              />
               <Text>~{subscribers}</Text>
             </Flex>
             <Flex gap="2" alignItems="center">
-              <Image boxSize="5" objectFit="cover" src="/view.svg" alt="Количество просмоторов" />
+              <Image
+                boxSize="5"
+                objectFit="cover"
+                src="/view.svg"
+                alt="Количество просмоторов"
+                loading="lazy"
+              />
               <Text>~{views}</Text>
             </Flex>
             <Flex gap="2" alignItems="center">
-              <Image boxSize="5" objectFit="cover" src="/man.svg" alt="Мужчин среди аудитории" />
+              <Image
+                boxSize="5"
+                objectFit="cover"
+                src="/man.svg"
+                alt="Мужчин среди аудитории"
+                loading="lazy"
+              />
               <Text>{malePercentage}%</Text>
             </Flex>
             <Flex gap="2" alignItems="center">
-              <Image boxSize="5" objectFit="cover" src="/woman.svg" alt="Женщин среди аудитории" />
+              <Image
+                boxSize="5"
+                objectFit="cover"
+                src="/woman.svg"
+                alt="Женщин среди аудитории"
+                loading="lazy"
+              />
               <Text>{femalePercentage}%</Text>
             </Flex>
           </Flex>
@@ -119,6 +143,7 @@ export default function Application({
                 objectFit="cover"
                 src={channelAvatar}
                 alt="Аватар группы или канала"
+                loading="lazy"
               />
               <Text>{category}</Text>
             </Flex>

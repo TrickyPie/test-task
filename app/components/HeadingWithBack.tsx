@@ -20,7 +20,13 @@ export default function HeadingWithBack(): JSX.Element {
           alignItems="center"
           justifyContent="center"
         >
-          <Image boxSize="6" objectFit="cover" src="/chevron-left.svg" alt="Обратно к заказу" />
+          <Image
+            boxSize="6"
+            objectFit="cover"
+            src="/chevron-left.svg"
+            alt="Обратно к заказу"
+            loading="lazy"
+          />
         </Box>
       </Link>
       <Heading as="h3" size="lg">
