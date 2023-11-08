@@ -53,3 +53,7 @@ npm start
 ![Результат GET запроса после PUT, изменен accepted](./stage2_screen4.png)
 
 3. Stage 3
+
+<video width="100%" height="auto" controls>
+  <source src="./stage3_video.mp4" type="video/mp4">
+</video>
