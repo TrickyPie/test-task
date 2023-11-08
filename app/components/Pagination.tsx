@@ -17,7 +17,7 @@ export default function Pagination({
   return (
     <Flex alignItems="center">
       <Text>
-        Страница {currentPage} из {totalPages}
+        Страница {currentPage ? currentPage : 1} из {totalPages ? totalPages : 1}
       </Text>
       <Spacer />
       <Flex alignItems="center" gap="2">
@@ -44,7 +44,7 @@ export default function Pagination({
           justifyContent="center"
         >
           <Text w="5" h="5" textAlign="center">
-            {currentPage}
+            {currentPage ? currentPage : 1}
           </Text>
         </Box>
 

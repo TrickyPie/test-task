@@ -1,5 +1,5 @@
 'use client';
-import { Flex, SimpleGrid, Spinner } from '@chakra-ui/react';
+import { Flex, SimpleGrid, Spinner, useToast } from '@chakra-ui/react';
 import getApplications from '../services/getApplications';
 import { useQuery } from '@tanstack/react-query';
 import Pagination from './Pagination';
@@ -12,6 +12,7 @@ export default function ApplicationsBlock(): JSX.Element {
   const [currentPage, setCurrentPage] = useState(START_PAGE);
   const [totalPages, setTotalPages] = useState(START_PAGE);
   const [chosenApplications, setChosenApplications] = useState<number[]>([]);
+  const toast = useToast();
 
   const { data, isLoading, isError, isSuccess, error } = useQuery({
     queryKey: ['getApplications', currentPage],
@@ -22,7 +23,14 @@ export default function ApplicationsBlock(): JSX.Element {
     if (data && data.pagination.totalPages) {
       setTotalPages(data.pagination.totalPages);
     }
-  }, [data]);
+    if (isError) {
+      toast({
+        title: 'Ошибка с получением заявок',
+        description: error.message,
+        status: 'error',
+      });
+    }
+  }, [data, error?.message, isError, toast]);
 
   if (isLoading) {
     return (
@@ -30,10 +38,6 @@ export default function ApplicationsBlock(): JSX.Element {
         <Spinner color="#422AFB" size="xl" />
       </Flex>
     );
-  }
-
-  if (isError) {
-    console.log(error.message);
   }
 
   const handlePrevClick = () => {

@@ -9,12 +9,13 @@ import {
   Checkbox,
   Card,
   Spinner,
+  useToast,
 } from '@chakra-ui/react';
 import Search from '../../public/search';
 import { Order } from '../faker';
 import putUpdatedApplication from '../services/putUpdatedApplication';
 import { useMutation } from '@tanstack/react-query';
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import contextType from '../Context';
 
 type ApplicationProps = {
@@ -45,6 +46,7 @@ export default function Application({
   } = application;
   const { buttonStatus, setCounter } = useContext(contextType);
   const [checkedStatus, setCheckedStatus] = useState(chosenApplications.includes(id));
+  const toast = useToast();
 
   const {
     mutate: update,
@@ -57,6 +59,16 @@ export default function Application({
       setCheckedStatus((prev) => !prev);
     },
   });
+
+  useEffect(() => {
+    if (isError) {
+      toast({
+        title: `Ошибка с заявкой номер ${id}, попробуйте повторить через некоторое время.`,
+        description: error.message,
+        status: 'error',
+      });
+    }
+  }, [error?.message, isError, toast, id]);
 
   const handleCheckboxClick = () => {
     update(id);
@@ -75,10 +87,6 @@ export default function Application({
         <Spinner color="#422AFB" size="xl" />
       </Flex>
     );
-  }
-
-  if (isError) {
-    console.log(error.message);
   }
 
   return (
