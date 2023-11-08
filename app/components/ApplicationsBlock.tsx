@@ -11,6 +11,7 @@ import { COUNTER_STEP, LIMIT, START_PAGE } from '../utils/constants';
 export default function ApplicationsBlock(): JSX.Element {
   const [currentPage, setCurrentPage] = useState(START_PAGE);
   const [totalPages, setTotalPages] = useState(START_PAGE);
+  const [chosenApplications, setChosenApplications] = useState<number[]>([]);
 
   const { data, isLoading, isError, isSuccess, error } = useQuery({
     queryKey: ['getApplications', currentPage],
@@ -47,6 +48,16 @@ export default function ApplicationsBlock(): JSX.Element {
     }
   };
 
+  const addToChosenApplications = (id: number) => {
+    setChosenApplications((prevChosenApplications) => [...prevChosenApplications, id]);
+  };
+
+  const removeFromChosenApplications = (id: number) => {
+    setChosenApplications((prevChosenApplications) =>
+      prevChosenApplications.filter((chosenId) => chosenId !== id)
+    );
+  };
+
   return (
     <SimpleGrid
       w="100%"
@@ -60,7 +71,15 @@ export default function ApplicationsBlock(): JSX.Element {
       <SimpleGrid w="100%" spacing="10">
         {isSuccess &&
           data.limitedOrders.map((application: Order) => {
-            return <Application key={application.id} {...application}></Application>;
+            return (
+              <Application
+                key={application.id}
+                application={application}
+                chosenApplications={chosenApplications}
+                addToChosenApplications={addToChosenApplications}
+                removeFromChosenApplications={removeFromChosenApplications}
+              ></Application>
+            );
           })}
       </SimpleGrid>
 

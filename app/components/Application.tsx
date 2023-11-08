@@ -17,8 +17,19 @@ import { useMutation } from '@tanstack/react-query';
 import { useContext, useState } from 'react';
 import contextType from '../Context';
 
-const chosenApplications: number[] = [];
-export default function Application(appProps: Order): JSX.Element {
+type ApplicationProps = {
+  application: Order;
+  chosenApplications: number[];
+  addToChosenApplications: (id: number) => void;
+  removeFromChosenApplications: (id: number) => void;
+};
+
+export default function Application({
+  application,
+  chosenApplications,
+  addToChosenApplications,
+  removeFromChosenApplications,
+}: ApplicationProps): JSX.Element {
   const {
     id,
     subscribers,
@@ -31,8 +42,7 @@ export default function Application(appProps: Order): JSX.Element {
     verificationStatus,
     tags,
     price,
-  } = appProps;
-
+  } = application;
   const { buttonStatus, setCounter } = useContext(contextType);
   const [checkedStatus, setCheckedStatus] = useState(chosenApplications.includes(id));
 
@@ -50,11 +60,11 @@ export default function Application(appProps: Order): JSX.Element {
 
   const handleCheckboxClick = () => {
     update(id);
-    if (chosenApplications.includes(id)) {
-      chosenApplications.filter((chosenId) => chosenId !== id);
+    if (checkedStatus) {
+      removeFromChosenApplications(id);
       setCounter((prevCounter) => prevCounter - 1);
     } else {
-      chosenApplications.push(id);
+      addToChosenApplications(id);
       setCounter((prevCounter) => prevCounter + 1);
     }
   };

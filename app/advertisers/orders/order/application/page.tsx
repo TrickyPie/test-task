@@ -9,7 +9,7 @@ import { useState } from 'react';
 import context from '../../../../Context';
 
 export default function ApplicationPage(): JSX.Element {
-  const [buttonStatus, setButtonStatus] = useState(false);
+  const [buttonStatus, setButtonStatus] = useState<boolean>(false);
   const [counter, setCounter] = useState<number>(0);
 
   const contextData = {
