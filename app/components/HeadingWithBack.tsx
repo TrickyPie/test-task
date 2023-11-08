@@ -11,17 +11,17 @@ export default function HeadingWithBack(): JSX.Element {
 
   return (
     <Flex gap="1" alignItems="center">
-      <Link as={NextLink} href={pathWithoutLastBlock} borderRadius="5px" p="2">
+      <Link as={NextLink} href={pathWithoutLastBlock} borderRadius="5px" p={['1', '1', '2']}>
         <Box
           bg="gray.200"
-          p="2"
+          p={['1', '1', '2']}
           borderRadius="5px"
           display="flex"
           alignItems="center"
           justifyContent="center"
         >
           <Image
-            boxSize="6"
+            boxSize={[3, 3, 6]}
             objectFit="cover"
             src="/chevron-left.svg"
             alt="Обратно к заказу"
@@ -29,7 +29,7 @@ export default function HeadingWithBack(): JSX.Element {
           />
         </Box>
       </Link>
-      <Heading as="h3" size="lg">
+      <Heading as="h3" size={['sm', 'md', 'lg']}>
         Заявки по заказу {orderId}
       </Heading>
     </Flex>

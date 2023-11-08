@@ -28,8 +28,13 @@ export default function ApplicationPage(): JSX.Element {
   return (
     <ErrorBoundary>
       <context.Provider value={contextData}>
-        <Center p="10" w="100%">
-          <Flex flexDirection="column" gap="1" height="100%" w="70%">
+        <Center p={{ base: '3', md: '5', lg: '10' }} w="100%">
+          <Flex
+            flexDirection="column"
+            gap="1"
+            height="100%"
+            w={{ base: '100%', md: '80%', lg: '70%' }}
+          >
             <Breadcrumbs />
             <HeadingWithBack />
             <ApplicationControlPanel />

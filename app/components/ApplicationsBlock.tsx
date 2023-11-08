@@ -34,8 +34,8 @@ export default function ApplicationsBlock(): JSX.Element {
 
   if (isLoading) {
     return (
-      <Flex justifyContent="center">
-        <Spinner color="#422AFB" size="xl" />
+      <Flex justifyContent="center" p="5">
+        <Spinner color="#422AFB" size={['md', 'xl']} />
       </Flex>
     );
   }
@@ -65,14 +65,14 @@ export default function ApplicationsBlock(): JSX.Element {
   return (
     <SimpleGrid
       w="100%"
-      spacing="3"
-      marginTop="10"
+      spacing={['1', '2', '3']}
+      marginTop={['2', '5', '10']}
       backgroundColor="#FAFBFC"
-      p="5"
+      p={['3', '3', '5']}
       borderRadius="30px"
       boxShadow="md"
     >
-      <SimpleGrid w="100%" spacing="10">
+      <SimpleGrid w="100%" spacing={['2', '5', '10']}>
         {isSuccess &&
           data.limitedOrders.map((application: Order) => {
             return (
