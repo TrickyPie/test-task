@@ -1,6 +1,6 @@
 'use client';
 import { usePathname } from 'next/navigation';
-import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, Box } from '@chakra-ui/react';
+import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, Flex } from '@chakra-ui/react';
 import ChevronRight from '../../public/chevron-right';
 
 const routes = [
@@ -15,10 +15,18 @@ export default function Breadcrumbs(): JSX.Element {
   const pathname = usePathname();
   return (
     <Breadcrumb
+      sx={{
+        ol: {
+          display: 'flex',
+          flexDirection: { base: 'column', md: 'row' },
+          alignItems: 'start',
+          justifyContent: 'start',
+        },
+      }}
       separator={
-        <Box display="flex" alignItems="center" justifyContent="center">
+        <Flex alignItems="center" justifyContent="center">
           <ChevronRight />
-        </Box>
+        </Flex>
       }
     >
       {routes.map(({ path, name }) => {

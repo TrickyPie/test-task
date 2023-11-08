@@ -1,4 +1,4 @@
-import { Text } from '@chakra-ui/react';
+import Breadcrumbs from './components/Breadcrumbs';
 export default function Home(): JSX.Element {
-  return <Text>Home page</Text>;
+  return <Breadcrumbs />;
 }

@@ -1,12 +1,41 @@
-import { Flex, Text, Image, Spacer, Box } from '@chakra-ui/react';
+import { Flex, Text, Image, Spacer, Box, Button } from '@chakra-ui/react';
+import { PaginationType } from '../services/getApplications';
 
-export default function Pagination(): JSX.Element {
+type PaginationProps = {
+  handlePrev: () => void;
+  handleNext: () => void;
+} & PaginationType;
+
+export default function Pagination({
+  handlePrev,
+  handleNext,
+  totalPages,
+  currentPage,
+  nextPage,
+  prevPage,
+}: PaginationProps): JSX.Element {
   return (
     <Flex alignItems="center">
-      <Text>Страница 1 из 1</Text>
-      <Spacer></Spacer>
+      <Text>
+        Страница {currentPage ? currentPage : 1} из {totalPages ? totalPages : 1}
+      </Text>
+      <Spacer />
       <Flex alignItems="center" gap="2">
-        <Image boxSize="5" objectFit="cover" src="/chevron-left.svg" alt="На предыдущую страницу" />
+        <Button
+          bgColor="transparent"
+          _hover={{ bgColor: 'transparent' }}
+          isDisabled={!prevPage}
+          onClick={handlePrev}
+        >
+          <Image
+            boxSize="5"
+            objectFit="cover"
+            src="/chevron-left.svg"
+            alt="На предыдущую страницу"
+            loading="lazy"
+          />
+        </Button>
+
         <Box
           bg="gray.200"
           p="2"
@@ -16,10 +45,24 @@ export default function Pagination(): JSX.Element {
           justifyContent="center"
         >
           <Text w="5" h="5" textAlign="center">
-            1
+            {currentPage ? currentPage : 1}
           </Text>
         </Box>
-        <Image boxSize="5" objectFit="cover" src="/chevron-right.svg" alt="На следующую страницу" />
+
+        <Button
+          bgColor="transparent"
+          _hover={{ bgColor: 'transparent' }}
+          isDisabled={!nextPage}
+          onClick={handleNext}
+        >
+          <Image
+            boxSize="5"
+            objectFit="cover"
+            src="/chevron-right.svg"
+            alt="На следующую страницу"
+            loading="lazy"
+          />
+        </Button>
       </Flex>
     </Flex>
   );
