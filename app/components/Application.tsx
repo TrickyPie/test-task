@@ -5,7 +5,6 @@ import {
   Grid,
   Heading,
   Tag,
-  Spacer,
   Checkbox,
   Card,
   Spinner,
@@ -94,6 +93,7 @@ export default function Application({
       <Flex
         w="100%"
         alignItems="center"
+        justifyContent="space-between"
         backgroundColor="white"
         p={['0.5rem 1rem', '2rem 3rem']}
         borderRadius="30px"
@@ -193,8 +193,6 @@ export default function Application({
             })}
           </Flex>
         </Grid>
-
-        <Spacer />
 
         <Flex flexDirection="column" h="100%" gap="30%">
           <Checkbox
