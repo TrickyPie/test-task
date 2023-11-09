@@ -1,92 +1,38 @@
 import { useContext, useEffect, useState } from 'react';
-import {
-  Flex,
-  Image,
-  Text,
-  Grid,
-  Heading,
-  Tag,
-  Checkbox,
-  Card,
-  Spinner,
-  useToast,
-} from '@chakra-ui/react';
-import { useMutation } from '@tanstack/react-query';
+import { Flex, Image, Text, Grid, Heading, Tag, Checkbox, Card } from '@chakra-ui/react';
 import Search from '@/public/search';
 import { Order } from '@/app/faker';
-import putUpdatedApplication from '@/app/services/putUpdatedApplication';
 import contextType from '@/app/Context';
 
-type ApplicationProps = {
-  application: Order;
-  chosenApplications: number[];
-  addToChosenApplications: (id: number) => void;
-  removeFromChosenApplications: (id: number) => void;
-};
-
 export default function Application({
-  application,
-  chosenApplications,
-  addToChosenApplications,
-  removeFromChosenApplications,
-}: ApplicationProps): JSX.Element {
-  const {
-    id,
-    subscribers,
-    views,
-    malePercentage,
-    femalePercentage,
-    channelAvatar,
-    category,
-    channelName,
-    verificationStatus,
-    tags,
-    price,
-  } = application;
-  const { buttonStatus, setCounter } = useContext(contextType);
+  id,
+  subscribers,
+  views,
+  malePercentage,
+  femalePercentage,
+  channelAvatar,
+  category,
+  channelName,
+  verificationStatus,
+  tags,
+  price,
+}: Order): JSX.Element {
+  const { buttonStatus, chosenApplications, setChosenApplications } = useContext(contextType);
   const [checkedStatus, setCheckedStatus] = useState(chosenApplications.includes(id));
-  const toast = useToast();
-
-  const {
-    mutate: update,
-    isError,
-    isPending,
-    error,
-  } = useMutation({
-    mutationFn: putUpdatedApplication,
-    onSuccess: async () => {
-      setCheckedStatus((prev) => !prev);
-    },
-  });
-
-  useEffect(() => {
-    if (isError) {
-      toast({
-        title: `Ошибка с заявкой номер ${id}, попробуйте повторить через некоторое время.`,
-        description: error.message,
-        status: 'error',
-      });
-    }
-  }, [error?.message, isError, toast, id]);
 
   const handleCheckboxClick = () => {
-    update(id);
-    if (checkedStatus) {
-      removeFromChosenApplications(id);
-      setCounter((prevCounter) => prevCounter - 1);
-    } else {
-      addToChosenApplications(id);
-      setCounter((prevCounter) => prevCounter + 1);
-    }
+    setCheckedStatus((prev) => !prev);
   };
 
-  if (isPending) {
-    return (
-      <Flex justifyContent="center">
-        <Spinner color="#422AFB" size={['md', 'xl']} />
-      </Flex>
-    );
-  }
+  useEffect(() => {
+    setChosenApplications((prevChosenApplications) => {
+      if (checkedStatus) {
+        return [...new Set([...prevChosenApplications, id])];
+      } else {
+        return prevChosenApplications.filter((chosenId) => chosenId !== id);
+      }
+    });
+  }, [checkedStatus, id, setChosenApplications]);
 
   return (
     <Card as="article" w="100%" borderRadius="30px">
