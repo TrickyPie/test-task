@@ -1,4 +1,4 @@
-import { Order } from '../faker';
+import { Order } from '@/app/faker';
 
 export type PaginationType = {
   totalCount?: number;

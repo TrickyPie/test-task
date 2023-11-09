@@ -1,7 +1,7 @@
 'use client';
-import { Flex, Image, Box, Link, Heading } from '@chakra-ui/react';
 import NextLink from 'next/link';
 import { usePathname } from 'next/navigation';
+import { Flex, Image, Box, Link, Heading } from '@chakra-ui/react';
 
 const orderId = '#0b6f729f-abdf-4919-92f5-31875d790179';
 

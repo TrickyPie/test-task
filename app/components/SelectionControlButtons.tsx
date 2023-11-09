@@ -1,6 +1,6 @@
-import { Button, Flex } from '@chakra-ui/react';
 import { useContext } from 'react';
-import context from '../Context';
+import { Button, Flex } from '@chakra-ui/react';
+import context from '@/app/Context';
 
 export default function SelectionControlButtons(): JSX.Element {
   const { counter } = useContext(context);

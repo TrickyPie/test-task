@@ -1,4 +1,4 @@
-import { Order } from '../faker';
+import { Order } from '@/app/faker';
 
 async function putUpdatedApplication(id: number): Promise<Order> {
   const response = await fetch(`/api/orders/${id}/accept`, { method: 'PUT' });

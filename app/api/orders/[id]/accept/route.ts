@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { ordersList } from '../../../../faker';
+import { ordersList } from '@/app/faker';
 
 export async function PUT(request: NextRequest, { params }: { params: { id: number } }) {
   const currentId = params.id;

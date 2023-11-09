@@ -1,8 +1,8 @@
 'use client';
-import { Flex, Select, Button, Box } from '@chakra-ui/react';
-import ChevronDown from '../../public/chevron-down';
 import { useContext } from 'react';
-import contextType from '../Context';
+import { Flex, Select, Button, Box } from '@chakra-ui/react';
+import ChevronDown from '@/public/chevron-down';
+import contextType from '@/app/Context';
 
 export default function ApplicationControlPanel(): JSX.Element {
   const { buttonStatus, setButtonStatus } = useContext(contextType);

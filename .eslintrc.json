@@ -35,5 +35,12 @@
     "@typescript-eslint/interface-name-prefix": "off",
     "@typescript-eslint/ban-ts-comment": "error",
     "@typescript-eslint/no-empty-function": "off"
+  },
+  "settings": {
+    "import/resolver": {
+      "node": {
+        "paths": ["app"]
+      }
+    }
   }
 }

@@ -1,12 +1,13 @@
 'use client';
-import { Flex, SimpleGrid, Spinner, useToast } from '@chakra-ui/react';
-import getApplications from '../services/getApplications';
-import { useQuery } from '@tanstack/react-query';
-import Pagination from './Pagination';
-import { Order } from '../faker';
-import Application from './Application';
 import { useEffect, useState } from 'react';
-import { COUNTER_STEP, LIMIT, START_PAGE } from '../utils/constants';
+import { Flex, SimpleGrid, Spinner, useToast } from '@chakra-ui/react';
+import { useQuery } from '@tanstack/react-query';
+import getApplications from '@/app/services/getApplications';
+import { Order } from '@/app/faker';
+import Pagination from '@/app/components/Pagination';
+import Application from '@/app/components/Application';
+
+import { COUNTER_STEP, LIMIT, START_PAGE } from '@/app/utils/constants';
 
 export default function ApplicationsBlock(): JSX.Element {
   const [currentPage, setCurrentPage] = useState(START_PAGE);

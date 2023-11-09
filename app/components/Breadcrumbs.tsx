@@ -1,7 +1,7 @@
 'use client';
 import { usePathname } from 'next/navigation';
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, Flex } from '@chakra-ui/react';
-import ChevronRight from '../../public/chevron-right';
+import ChevronRight from '@/public/chevron-right';
 
 const routes = [
   { path: '/', name: 'Главная' },

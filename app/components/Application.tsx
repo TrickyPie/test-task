@@ -1,3 +1,4 @@
+import { useContext, useEffect, useState } from 'react';
 import {
   Flex,
   Image,
@@ -10,12 +11,11 @@ import {
   Spinner,
   useToast,
 } from '@chakra-ui/react';
-import Search from '../../public/search';
-import { Order } from '../faker';
-import putUpdatedApplication from '../services/putUpdatedApplication';
 import { useMutation } from '@tanstack/react-query';
-import { useContext, useEffect, useState } from 'react';
-import contextType from '../Context';
+import Search from '@/public/search';
+import { Order } from '@/app/faker';
+import putUpdatedApplication from '@/app/services/putUpdatedApplication';
+import contextType from '@/app/Context';
 
 type ApplicationProps = {
   application: Order;

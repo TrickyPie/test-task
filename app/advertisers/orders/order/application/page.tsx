@@ -1,12 +1,12 @@
 'use client';
-import { Flex, Center } from '@chakra-ui/react';
-import Breadcrumbs from '../../../../components/Breadcrumbs';
-import HeadingWithBack from '../../../../components/HeadingWithBack';
-import ApplicationControlPanel from '../../../../components/ApplicationControlPanel';
-import SelectionControlButtons from '../../../../components/SelectionControlButtons';
-import ApplicationsBlock from '../../../../components/ApplicationsBlock';
 import { useMemo, useState } from 'react';
-import context from '../../../../Context';
+import { Flex, Center } from '@chakra-ui/react';
+import context from '@/app/Context';
+import Breadcrumbs from '@/app/components/Breadcrumbs';
+import HeadingWithBack from '@/app/components/HeadingWithBack';
+import ApplicationControlPanel from '@/app/components/ApplicationControlPanel';
+import SelectionControlButtons from '@/app/components/SelectionControlButtons';
+import ApplicationsBlock from '@/app/components/ApplicationsBlock';
 
 export const ErrorBoundary = ({ children }: { children: React.ReactNode }): JSX.Element => {
   return <>{children}</>;

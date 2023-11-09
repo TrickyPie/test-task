@@ -1,5 +1,5 @@
 import { Flex, Text, Image, Box, Button } from '@chakra-ui/react';
-import { PaginationType } from '../services/getApplications';
+import { PaginationType } from '@/app/services/getApplications';
 
 type PaginationProps = {
   handlePrev: () => void;
