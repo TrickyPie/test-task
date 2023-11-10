@@ -14,16 +14,16 @@ export const ErrorBoundary = ({ children }: { children: React.ReactNode }): JSX.
 
 export default function ApplicationPage(): JSX.Element {
   const [buttonStatus, setButtonStatus] = useState<boolean>(false);
-  const [counter, setCounter] = useState<number>(0);
+  const [chosenApplications, setChosenApplications] = useState<number[]>([]);
 
   const contextData = useMemo(() => {
     return {
       buttonStatus,
       setButtonStatus,
-      counter,
-      setCounter,
+      chosenApplications,
+      setChosenApplications,
     };
-  }, [buttonStatus, setButtonStatus, counter, setCounter]);
+  }, [buttonStatus, setButtonStatus, chosenApplications, setChosenApplications]);
 
   return (
     <ErrorBoundary>
