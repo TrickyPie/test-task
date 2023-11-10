@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
-import { Providers } from './providers';
 import { Box } from '@chakra-ui/react';
+import { Providers } from '@/app/providers';
 
 export const metadata: Metadata = {
   title: 'Test task',

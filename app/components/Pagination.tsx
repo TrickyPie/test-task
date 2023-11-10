@@ -1,5 +1,5 @@
-import { Flex, Text, Image, Spacer, Box, Button } from '@chakra-ui/react';
-import { PaginationType } from '../services/getApplications';
+import { Flex, Text, Image, Box, Button } from '@chakra-ui/react';
+import { PaginationType } from '@/app/services/getApplications';
 
 type PaginationProps = {
   handlePrev: () => void;
@@ -15,11 +15,11 @@ export default function Pagination({
   prevPage,
 }: PaginationProps): JSX.Element {
   return (
-    <Flex alignItems="center">
+    <Flex alignItems="center" justifyContent="space-between">
       <Text>
         Страница {currentPage ? currentPage : 1} из {totalPages ? totalPages : 1}
       </Text>
-      <Spacer />
+
       <Flex alignItems="center" gap="2">
         <Button
           bgColor="transparent"

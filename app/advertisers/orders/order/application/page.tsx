@@ -1,12 +1,12 @@
 'use client';
-import { Flex, Center } from '@chakra-ui/react';
-import Breadcrumbs from '../../../../components/Breadcrumbs';
-import HeadingWithBack from '../../../../components/HeadingWithBack';
-import ApplicationControlPanel from '../../../../components/ApplicationControlPanel';
-import SelectionControlButtons from '../../../../components/SelectionControlButtons';
-import ApplicationsBlock from '../../../../components/ApplicationsBlock';
 import { useMemo, useState } from 'react';
-import context from '../../../../Context';
+import { Flex, Center } from '@chakra-ui/react';
+import context from '@/app/Context';
+import Breadcrumbs from '@/app/components/Breadcrumbs';
+import HeadingWithBack from '@/app/components/HeadingWithBack';
+import ApplicationControlPanel from '@/app/components/ApplicationControlPanel';
+import SelectionControlButtons from '@/app/components/SelectionControlButtons';
+import ApplicationsBlock from '@/app/components/ApplicationsBlock';
 
 export const ErrorBoundary = ({ children }: { children: React.ReactNode }): JSX.Element => {
   return <>{children}</>;
@@ -14,16 +14,16 @@ export const ErrorBoundary = ({ children }: { children: React.ReactNode }): JSX.
 
 export default function ApplicationPage(): JSX.Element {
   const [buttonStatus, setButtonStatus] = useState<boolean>(false);
-  const [counter, setCounter] = useState<number>(0);
+  const [chosenApplications, setChosenApplications] = useState<number[]>([]);
 
   const contextData = useMemo(() => {
     return {
       buttonStatus,
       setButtonStatus,
-      counter,
-      setCounter,
+      chosenApplications,
+      setChosenApplications,
     };
-  }, [buttonStatus, setButtonStatus, counter, setCounter]);
+  }, [buttonStatus, setButtonStatus, chosenApplications, setChosenApplications]);
 
   return (
     <ErrorBoundary>

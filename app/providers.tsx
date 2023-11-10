@@ -1,12 +1,11 @@
 'use client';
-
+import React from 'react';
 import { CacheProvider } from '@chakra-ui/next-js';
 import { ChakraProvider } from '@chakra-ui/react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
-import theme from './theme';
 import { ReactQueryStreamedHydration } from '@tanstack/react-query-next-experimental';
-import React from 'react';
+import theme from '@/app/theme';
 
 export function Providers({ children }: { children: React.ReactNode }) {
   const [queryClient] = React.useState(() => new QueryClient());

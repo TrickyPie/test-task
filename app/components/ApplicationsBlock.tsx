@@ -1,17 +1,17 @@
 'use client';
-import { Flex, SimpleGrid, Spinner, useToast } from '@chakra-ui/react';
-import getApplications from '../services/getApplications';
-import { useQuery } from '@tanstack/react-query';
-import Pagination from './Pagination';
-import { Order } from '../faker';
-import Application from './Application';
 import { useEffect, useState } from 'react';
-import { COUNTER_STEP, LIMIT, START_PAGE } from '../utils/constants';
+import { Flex, SimpleGrid, Spinner, useToast } from '@chakra-ui/react';
+import { useQuery } from '@tanstack/react-query';
+import getApplications from '@/app/services/getApplications';
+import { Order } from '@/app/faker';
+import Pagination from '@/app/components/Pagination';
+import Application from '@/app/components/Application';
+
+import { COUNTER_STEP, LIMIT, START_PAGE } from '@/app/utils/constants';
 
 export default function ApplicationsBlock(): JSX.Element {
   const [currentPage, setCurrentPage] = useState(START_PAGE);
   const [totalPages, setTotalPages] = useState(START_PAGE);
-  const [chosenApplications, setChosenApplications] = useState<number[]>([]);
   const toast = useToast();
 
   const { data, isLoading, isError, isSuccess, error } = useQuery({
@@ -52,16 +52,6 @@ export default function ApplicationsBlock(): JSX.Element {
     }
   };
 
-  const addToChosenApplications = (id: number) => {
-    setChosenApplications((prevChosenApplications) => [...prevChosenApplications, id]);
-  };
-
-  const removeFromChosenApplications = (id: number) => {
-    setChosenApplications((prevChosenApplications) =>
-      prevChosenApplications.filter((chosenId) => chosenId !== id)
-    );
-  };
-
   return (
     <SimpleGrid
       w="100%"
@@ -75,15 +65,7 @@ export default function ApplicationsBlock(): JSX.Element {
       <SimpleGrid w="100%" spacing={['2', '5', '10']}>
         {isSuccess &&
           data.limitedOrders.map((application: Order) => {
-            return (
-              <Application
-                key={application.id}
-                application={application}
-                chosenApplications={chosenApplications}
-                addToChosenApplications={addToChosenApplications}
-                removeFromChosenApplications={removeFromChosenApplications}
-              ></Application>
-            );
+            return <Application key={application.id} {...application}></Application>;
           })}
       </SimpleGrid>
 
